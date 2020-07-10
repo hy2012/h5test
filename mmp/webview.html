@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>call phone</title>
+        <script src="https://b.bdstatic.com/searchbox/icms/searchbox/js/swan-2.0.6.js"></script>
+    </head>
+    <body>
+        <button onclick="callMobile()">clickMe</button>
+        <button onclick="getEnv()">getEnv</button>
+    </body>
+    <script type="text/javascript">
+        function callMobile() {
+            swan.makePhoneCall({
+                phoneNumber: '10086' 
+            });
+        }
+        function getEnv() {
+           swan.webView.getEnv(function(res) {
+                alert(JSON.stringify(res))
+                console.log(res.smartprogram);
+            }); 
+        }
+    </script>
+</html>
