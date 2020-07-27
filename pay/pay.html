@@ -22,6 +22,7 @@
         function openTest() {
             console.log('open.....')
             var win = window.open("https://www.baidu.com", '_blank');
+             console.log('win.....' + JSON.stringify(win))
             setTimeout(function () {
                         win.close()
                     }, 0)
