@@ -8,8 +8,20 @@
     <body>
         <button onclick="callMobile()">clickMe</button>
         <button onclick="getEnv()">getEnv</button>
+        
+        <input id="fname" type="file" accept="image/*" capture="camera" onchange="myFunction(this)" multiple>
+
     </body>
     <script type="text/javascript">
+        
+        function myFunction($event) {
+            console.log('event', $event.files)
+            let curFiles = $event.files
+            for(const file of curFiles) {
+                 console.log('item file: ', file); 
+            }   
+        }
+        
         function callMobile() {
             swan.makePhoneCall({
                 phoneNumber: '10086' 
