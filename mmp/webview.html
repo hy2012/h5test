@@ -9,14 +9,15 @@
         <button onclick="callMobile()">clickMe</button>
         <button onclick="getEnv()">getEnv</button>
         
-        <input id="fname" type="file" accept="image/*" capture="camera" onchange="myFunction(this)" multiple>
+        <input id="fname" type="file" accept="image/*" capture="camera" onchange="myFunction()" multiple>
 
     </body>
     <script type="text/javascript">
         
-        function myFunction($event) {
-            console.log('event', $event.files)
-            let curFiles = $event.files
+        function myFunction() {
+            const input = document.querySelector('input');
+            console.log('event', input.files)
+            let curFiles = input.files
             for(const file of curFiles) {
                  console.log('item file: ', file); 
             }   
