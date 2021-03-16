@@ -9,30 +9,51 @@
 
 <body>
     <p>Create Window </p>
+    <p>abcde123456abcde123456abcde123456abcde123456abcde123456abcde123456abcde123456abcde123456
+        abcde123456abcde123456abcde123456abcde123456abcde123456abcde123456abcde123456abcde123456
+        abcde123456abcde123456abcde123456abcde123456abcde123456abcde123456
+    </p>
+    
     <a href="https://www.baidu.com" target="_blank">Open Zhihu</a>
     <a href="https://mclient.alipay.com/cashier/mobilepay.html" target="_blank">mobilepay</a>
     <a href="https://mclient.alipay.com/h5Continue.html" target="_blank">h5Continue</a>
     <a href="https://nike.onelnk.com/3CPe/6c0caac" target="_blank">intent </a>
     <a href="https://www.kungfu-trader.com/license/" target="_blank">kungfu </a>
     <button onclick="openTest()">open</button>
+    <button onclick="getSelectionText()">getSelectionText</button>
 </body>
 
- <script type="text/javascript">
-   console.log('init.....')
-        function openTest() {
-            console.log('open.....')
-            var win = window.open("https://www.baidu.com", '_blank');
-             console.log('win.....' + JSON.stringify(win))
-            setTimeout(function () {
-                        win.close()
-                    }, 0)
-            //win.focus();
+<script type="text/javascript">
+    console.log('init.....')
+
+    function openTest() {
+        console.log('open.....')
+        var win = window.open("https://www.baidu.com", '_blank');
+        console.log('win.....' + JSON.stringify(win))
+        setTimeout(function () {
+            win.close()
+        }, 0)
+        //win.focus();
+    }
+
+    function getEnv() {
+        swan.webView.getEnv(function (res) {
+            alert(JSON.stringify(res))
+            console.log(res.smartprogram);
+        });
+    }
+
+    function getSelectionText() {
+        var text = "";
+        if (window.getSelection) {
+            text = window.getSelection().toString();
+        } else if (document.selection && document.selection.type != "Control") {
+            text = document.selection.createRange().text;
         }
-        function getEnv() {
-           swan.webView.getEnv(function(res) {
-                alert(JSON.stringify(res))
-                console.log(res.smartprogram);
-            }); 
-        }
+        console.log("getSelectionText:"+ text)
+        alert(text)
+        return text;
+    }
 </script>
+
 </html>
