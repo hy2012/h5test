@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Section </title>
+</head>
+
+<body>
+    <p>test Section haha </p>
+    <button onclick="getSelectionText()">getSelectionText</button>
+</body>
+
+<script type="text/javascript">
+    console.log('init.....')
+    function getSelectionText() {
+        console.log('selection.....')
+        var text = "";
+        if (window.getSelection) {
+            text = window.getSelection().toString();
+        } else if (document.selection && document.selection.type != "Control") {
+            text = document.selection.createRange().text;
+        }
+        console.log("getSelectionText:" + text)
+        alert(text)
+        return text;
+    }
+</script>
+
+</html>
