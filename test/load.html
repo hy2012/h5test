@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.startDate = Date.now()
+        console.log("load html startTime:" + startDate)
+    </script>
+</head>
+
+<body>
+    页面 load 时间测试
+</body>
+
+<script type="text/javascript">
+    function log(tag) {
+        var time = Date.now()
+        var dur = now - startDate
+        console.log("load" + tag + " time:" + time + " duration:" + dur)
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        log("DOMContentLoaded")
+    })
+
+    document.addEventListener("readystatechange", function () {
+        if (document.readyState == 'loading') {
+            log("readystatechange-loading")
+        } else if (document.readyState == 'interactive') {
+            log("readystatechange-interactive")
+        } else if (document.readyState == 'complete') {
+            log("readystatechange-complete")
+        }
+    })
+    window.onload = function () {
+        log("onload")
+    }
+    window.log = log
+</script>
+
+</html>
