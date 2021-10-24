@@ -6,8 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+        
+        function sleep(d) {
+            for(var i= Date.now(); Date.now() - i <= d;);
+        }
+
         window.startDate = Date.now()
         console.log("load html startTime:" + startDate)
+        sleep(2000)
     </script>
 
     <!-- 引入样式 -->
@@ -46,6 +52,10 @@
         log("onload")
     }
     window.log = log
+
+    function sleep1(d) {
+        for(var i= Date.now(); Date.now() - i <= d;);
+    }
 </script>
 
 </html>
