@@ -16,6 +16,17 @@
         <input id="fname" type="file" accept="image/*" capture="camera" onchange="myFunction()" multiple>
         
         <input id="fname" type="file" accept="video/*" capture="camera" multiple>
+        
+        <form action="/submit" method="post">
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname"><br>
+            <input type="submit" value="Submit Post">
+        </form>
+        <form action="/submitget" method="get">
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname"><br>
+            <input type="submit" value="Submit Get">
+        </form>
 
     </body>
     <script type="text/javascript">
