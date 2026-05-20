@@ -1,51 +1,64 @@
- 4<!doctype html>
-<html lang="zh">
-  <head>
-    <title data-rh="true">测试拦截</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
-  </head>
-  <body>
-    <p>iframe start</p>
-    <p>
-      1
-      <iframe src="openapp.jdmobile://virtual?params={}" style="display: none:"></iframe>
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Scheme 拦截测试 - H5 测试工具</title>
+    <link rel="stylesheet" href="../common/style.css">
+    <script src="../common/utils.js"></script>
+    <script src="../common/nav.js"></script>
+    <style>
+        .scheme-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .scheme-item {
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+        }
+        iframe {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>URL Scheme 拦截测试</h1>
+    <p>该页面通过隐藏的 <code>iframe</code> 尝试触发常见的应用跳转，用于测试 WebView 的拦截行为。</p>
+
+    <div class="scheme-list">
+        <div class="scheme-item">1. 京东 (JD)</div>
+        <div class="scheme-item">2. 微信 (WeChat)</div>
+        <div class="scheme-item">3. 美团 (Meituan)</div>
+        <div class="scheme-item">4. 拼多多 (Pinduoduo)</div>
+        <div class="scheme-item">5. SR (sr://)</div>
+        <div class="scheme-item">6. 淘宝 (Taobao)</div>
+        <div class="scheme-item">7. 原神 (Genshin)</div>
+        <div class="scheme-item">8. 爱奇艺 (iQIYI)</div>
+        <div class="scheme-item">9. 天猫 (Tmall)</div>
+        <div class="scheme-item">10. 京东 (snssdk)</div>
+    </div>
+
+    <!-- 隐藏的 iframe 用于触发 scheme -->
+    <iframe src="openapp.jdmobile://virtual?params={}"></iframe>
+    <iframe src="weixin://virtual?params={}"></iframe>
+    <iframe src="iMeituan://virtual?params={}"></iframe>
+    <iframe src="pinduoduo://virtual?params={}"></iframe>
+    <iframe src="sr://virtual?params={}"></iframe>
+    <iframe src="taobao://virtual?params={}"></iframe>
+    <iframe src="yuanshengame://virtual?params={}"></iframe>
+    <iframe src="iqiyi://virtual?params={}"></iframe>
+    <iframe src="tmall://virtual?params={}"></iframe>
+    <iframe src="snssdk2329.jdmobile://virtual?params={}"></iframe>
+
+    <p style="margin-top: 20px; color: #666; font-style: italic;">
+        注：在桌面浏览器中通常不会有任何反应，请在移动端 WebView 中测试。
     </p>
-    <p>
-      2
-      <iframe src="weixin://virtual?params={}" style="display: none:"></iframe>
-    </p>
-    <p>
-      3
-      <iframe src="iMeituan://virtual?params={}" style="display: none:"></iframe>
-    </p>
-    <p>
-      4
-      <iframe src="pinduoduo://virtual?params={}" style="display: none:"></iframe>
-    </p>
-    <p>
-      5
-      <iframe src="sr://virtual?params={}" style="display: none:"></iframe>
-    </p>
-    <p>
-      6
-      <iframe src="taobao://virtual?params={}" style="display: none:"></iframe>
-    </p>
-    <p>
-      7
-      <iframe src="yuanshengame://virtual?params={}" style="display: none:"></iframe>
-    </p>
-    <p>
-      8
-      <iframe src="iqiyi://virtual?params={}" style="display: none:"></iframe>
-    </p>
-    <p>
-      9
-      <iframe src="tmall://virtual?params={}" style="display: none:"></iframe>
-    </p>
-    <p>
-      10
-      <iframe src="snssdk2329.jdmobile://virtual?params={}" style="display: none:"></iframe>
-    </p>
-    <p>iframe end</p>
-  </body>
+</body>
+
 </html>

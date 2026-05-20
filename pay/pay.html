@@ -4,56 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H5 测试工具</title>
-    <style>
-        body {
-            margin: 20px;
-            font-family: Arial, sans-serif;
-        }
-
-        h2 {
-            margin-top: 20px;
-            color: #333;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            margin: 8px 0;
-        }
-
-        a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        button {
-            padding: 10px 20px;
-            margin: 5px;
-        }
-
-        textarea {
-            width: 100%;
-            height: 150px;
-            margin-top: 10px;
-        }
-    </style>
+    <title>支付与跳转测试 - H5 测试工具</title>
+    <link rel="stylesheet" href="../common/style.css">
+    <script src="../common/utils.js"></script>
+    <script src="../common/nav.js"></script>
 </head>
 
 <body>
-    <h1>H5 测试工具</h1>
+    <h1>支付与跳转测试</h1>
 
-    <h2>应用跳转</h2>
+    <h2>应用跳转 (URL Scheme)</h2>
     <ul>
         <li><a href='zhihu://open_url?url=https://juejin.cn/'>知乎跳转 - 稀土掘金</a></li>
         <li><a href='zhihu://open_url?url=https://www.zhihu.com'>知乎跳转 - 知乎首页</a></li>
+        <li><a href='zhihu://hybrid?zh_url=http://www.testzhihu.com/get_headers.php&zh_hide_nav_bar=true'>知乎 Hybrid 伪链接</a></li>
     </ul>
 
     <h2>网页跳转</h2>
@@ -68,81 +32,49 @@
         <li><a href="https://mclient.alipay.com/h5Continue.html" target="_blank">支付宝 H5 继续</a></li>
     </ul>
 
-    <h2>其他链接</h2>
+    <h2>其他链接与下载</h2>
     <ul>
-        <li><a href="https://nike.onelnk.com/3CPe/6c0caac" target="_blank">Nike Intent(新窗口)</a></li>
-        <li><a href="https://www.kungfu-trader.com/license/" target="_blank">Kungfu Trader(新窗口)</a></li>
+        <li><a href="https://nike.onelnk.com/3CPe/6c0caac" target="_blank">Nike Intent (新窗口)</a></li>
+        <li><a href="https://www.kungfu-trader.com/license/" target="_blank">Kungfu Trader (新窗口)</a></li>
         <li><a href="https://imtt.dd.qq.com/sjy.10001/16891/apk/F9DE573BCD39BE877BFE8978808EA018.apk?fsname=com.dailyyoga.cn_9.10.0.2_376.apk&csr=3554"
                 download>APK 下载测试</a></li>
     </ul>
 
     <h2>功能测试</h2>
-    <button onclick="openTest()">打开新窗口</button>
-    <button onclick="windownLocation()">页面跳转</button>
-    <button onclick="getSelectionText()">获取选中文本</button>
-
-    <div>
-        <textarea style="width:500px; height: 300px;">
-        </textarea>
+    <div class="test-buttons">
+        <button onclick="openTest()">打开新窗口 (3秒后自动关闭)</button>
+        <button onclick="windowLocation()">页面跳转 (百度)</button>
+        <button onclick="getSelectionText()">获取选中文本</button>
     </div>
 
+    <div>
+        <p>请在下方文本框中输入或选择文本进行测试：</p>
+        <textarea placeholder="在此输入文本，然后点击“获取选中文本”按钮进行测试..."></textarea>
+    </div>
 
+    <script type="text/javascript">
+        console.log('Pay page initialized');
+
+        function windowLocation() {
+            console.log('Navigating to Baidu...');
+            window.location.href = "https://www.baidu.com";
+        }
+
+        function openTest() {
+            console.log('Opening new window...');
+            var win = window.open("https://www.baidu.com", '_blank');
+            if (win) {
+                console.log('Window opened successfully');
+                setTimeout(function () {
+                    console.log('Closing window...');
+                    win.close();
+                }, 3000);
+            } else {
+                console.error('Window blocked or failed to open');
+                alert('窗口被拦截或打开失败');
+            }
+        }
+    </script>
 </body>
-
-
-<script type="text/javascript">
-    console.log('init.....')
-
-    function windownLocation() {
-        window.location = "http://www.baidu.com"
-    }
-
-    function openTest() {
-        var win = window.open("https://www.baidu.com", '_blank');
-        if (win) {
-            setTimeout(() => win.close(), 3000)
-        }
-    }
-
-    function getSelectionText() {
-        var text = window.getSelection().toString();
-        alert(text || '请先选择文本')
-    }
-
-    function windownLocation() {
-        console.log('windownLocation.....')
-        window.location = "http://www.baidu.com"
-    }
-
-    function openTest() {
-        console.log('open.....')
-        var win = window.open("https://www.baidu.com", '_blank');
-        console.log('win.....' + JSON.stringify(win))
-        setTimeout(function () {
-            win.close()
-        }, 0)
-        //win.focus();
-    }
-
-    function getEnv() {
-        swan.webView.getEnv(function (res) {
-            alert(JSON.stringify(res))
-            console.log(res.smartprogram);
-        });
-    }
-
-    function getSelectionText() {
-        console.log('selection.....')
-        var text = "";
-        if (window.getSelection) {
-            text = window.getSelection().toString();
-        } else if (document.selection && document.selection.type != "Control") {
-            text = document.selection.createRange().text;
-        }
-        console.log("getSelectionText:" + text)
-        alert(text)
-        return text;
-    }
-</script>
 
 </html>

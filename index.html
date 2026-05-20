@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H5 功能测试页面集合</title>
+    <link rel="stylesheet" href="common/style.css">
+    <script src="common/nav.js"></script>
+</head>
+
+<body>
+    <h1>H5 功能测试页面集合 (h5test)</h1>
+    <p>这是一个用于测试移动端 WebView 各种功能的静态 HTML5 页面集合。</p>
+
+    <h2>测试页面索引</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr style="background: #f4f4f4; border-bottom: 2px solid #ddd;">
+                <th style="padding: 10px; text-align: left;">测试分类</th>
+                <th style="padding: 10px; text-align: left;">页面路径</th>
+                <th style="padding: 10px; text-align: left;">主要测试功能</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;"><strong>核心功能</strong></td>
+                <td style="padding: 10px;"><a href="mmp/webview.html">mmp/webview.html</a></td>
+                <td style="padding: 10px;">文件上传、拨打电话、百度 Swan SDK、视频播放</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;"><strong>地理位置</strong></td>
+                <td style="padding: 10px;"><a href="mmp/geo.html">mmp/geo.html</a></td>
+                <td style="padding: 10px;">Geolocation API (获取设备经纬度)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;"><strong>支付与跳转</strong></td>
+                <td style="padding: 10px;"><a href="pay/pay.html">pay/pay.html</a></td>
+                <td style="padding: 10px;">URL Scheme 跳转 (知乎)、支付宝链接、APK 下载</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;"><strong>性能测试</strong></td>
+                <td style="padding: 10px;"><a href="test/load.html">test/load.html</a></td>
+                <td style="padding: 10px;">页面加载时间 (DOMContentLoaded, onload)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;"><strong>文本操作</strong></td>
+                <td style="padding: 10px;"><a href="test/selection.html">test/selection.html</a></td>
+                <td style="padding: 10px;">文本选择 API (window.getSelection)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;"><strong>拦截测试</strong></td>
+                <td style="padding: 10px;"><a href="test/test-open.html">test/test-open.html</a></td>
+                <td style="padding: 10px;">iframe URL scheme 拦截 (京东、微信、淘宝等)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;"><strong>视频播放</strong></td>
+                <td style="padding: 10px;"><a href="videodemo/video_autoplay.html">videodemo/video_autoplay.html</a></td>
+                <td style="padding: 10px;">各种 autoplay / x5-playsinline 组合测试</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 30px; padding: 15px; background: #f9f9f9; border-left: 4px solid #0066cc;">
+        <h3>本地开发与测试</h3>
+        <p>你可以使用任何静态文件服务器运行本项目。例如使用 Python:</p>
+        <code>python3 -m http.server 8080</code>
+    </div>
+</body>
+
+</html>

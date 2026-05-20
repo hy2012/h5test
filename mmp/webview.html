@@ -1,78 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>call phone</title>
-        <link href="https://www.test.hy/111.css" rel="stylesheet"/>
-        <script src="https://b.bdstatic.com/searchbox/icms/searchbox/js/swan-2.0.6.js"></script>
-        <script src="https://www.test.hy/1.js"></script>
-        
-       
-    </head>
-    
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebView 功能测试 - H5 测试工具</title>
+    <link rel="stylesheet" href="../common/style.css">
+    <script src="https://b.bdstatic.com/searchbox/icms/searchbox/js/swan-2.0.6.js"></script>
+    <script src="../common/utils.js"></script>
+    <script src="../common/nav.js"></script>
     <style>
         video {
             width: 100%;
-            height: 600
+            max-width: 600px;
+            height: auto;
+            margin-top: 10px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group p {
+            margin-bottom: 5px;
+            font-weight: bold;
         }
     </style>
+</head>
 
-    <body>
-        <button onclick="callMobile()">clickMe</button>
-        <button onclick="getEnv()">getEnv</button>
-        <img src="https://t7.baidu.com/it/u=2529476510,3041785782&fm=193&f=GIF"/>
-        <p>input1</p>
-        <input id="fname" type="file" accept="image/*" capture="camera" onchange="myFunction()" multiple/>
-        <p>input2</p>
-        <input id="fname1" type="file" accept="video/*" capture="camera" multiple/>
-        <p>input3</p>
+<body>
+    <h1>WebView 功能测试</h1>
+
+    <h2>百度小程序 (Swan SDK)</h2>
+    <div class="test-buttons">
+        <button onclick="callMobile()">拨打电话 (10086)</button>
+        <button onclick="getEnv()">获取环境信息</button>
+    </div>
+
+    <h2>文件上传 (Input File)</h2>
+    <div class="input-group">
+        <p>图片上传 (Camera capture):</p>
+        <input id="fname" type="file" accept="image/*" capture="camera" onchange="handleFileChange(this)" multiple />
+    </div>
+    <div class="input-group">
+        <p>视频上传 (Camera capture):</p>
+        <input id="fname1" type="file" accept="video/*" capture="camera" multiple />
+    </div>
+    <div class="input-group">
+        <p>所有文件:</p>
         <input id="fname2" type="file" accept="*/*" />
-        <p>input4</p>
-        <input id="fname3" type="file" accept="image/*,video/*" capture="camera" multiple/>
-        
-        <a href='zhihu://hybrid?zh_url=http://www.testzhihu.com/get_headers.php&zh_hide_nav_bar=true'>fake zhihu</a>
+    </div>
+    <div class="input-group">
+        <p>混合上传 (Image/Video, Camera):</p>
+        <input id="fname3" type="file" accept="image/*,video/*" capture="camera" multiple />
+    </div>
 
-        <a href='tel:400-919-0001'>400-919-0001</a>
-        
-        <form action="/submit" method="post">
-            <label for="fname">First name:</label><br>
-            <input type="text" id="fname" name="fname"><br>
-            <input type="submit" value="Submit Post">
-        </form>
-        <form action="/submitget" method="get">
-            <label for="lname">Last name:</label><br>
-            <input type="text" id="lname" name="lname"><br>
-            <input type="submit" value="Submit Get">
-        </form>
+    <h2>链接测试</h2>
+    <ul>
+        <li><a href='zhihu://hybrid?zh_url=http://www.testzhihu.com/get_headers.php&zh_hide_nav_bar=true'>知乎伪链接 (URL Scheme)</a></li>
+        <li><a href='tel:400-919-0001'>拨号链接: 400-919-0001</a></li>
+    </ul>
 
-        <video controls>
-            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-        </video>
+    <h2>表单提交</h2>
+    <form action="/submit" method="post">
+        <label for="fname_post">First name (POST):</label><br>
+        <input type="text" id="fname_post" name="fname"><br>
+        <input type="submit" value="Submit Post">
+    </form>
+    <br>
+    <form action="/submitget" method="get">
+        <label for="lname_get">Last name (GET):</label><br>
+        <input type="text" id="lname_get" name="lname"><br>
+        <input type="submit" value="Submit Get">
+    </form>
 
-    </body>
+    <h2>视频播放</h2>
+    <video controls>
+        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+        您的浏览器不支持 video 标签。
+    </video>
+
     <script type="text/javascript">
-        console.log("haha---------------")
-      
-        function myFunction() {
-           
-            const input = document.querySelector('input');
-            console.log('event', input.files)
-            let curFiles = input.files
-            for(const file of curFiles) {
-                 console.log('item file: ', file); 
-            }   
+        console.log("WebView test page initialized");
+
+        function handleFileChange(input) {
+            console.log('Files selected:', input.files);
+            let curFiles = input.files;
+            for (const file of curFiles) {
+                console.log('File details:', file.name, file.type, file.size);
+            }
         }
-        
+
         function callMobile() {
-            swan.makePhoneCall({
-                phoneNumber: '10086' 
-            });
-        }
-        function getEnv() {
-           swan.webView.getEnv(function(res) {
-                alert(JSON.stringify(res))
-                console.log(res.smartprogram);
-            }); 
+            if (typeof swan !== 'undefined' && swan.makePhoneCall) {
+                swan.makePhoneCall({
+                    phoneNumber: '10086'
+                });
+            } else {
+                alert('Swan SDK 未加载，无法拨打电话');
+            }
         }
     </script>
+</body>
+
 </html>

@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Test P5 - H5 测试工具</title>
+    <link rel="stylesheet" href="../common/style.css">
+    <script src="../common/nav.js"></script>
+</head>
 <body>
-    <p>自动播放4</p>
-    <video height="300" width="300" autoplay="autoplay" loop="loop" x5-playsinline muted>
+    <h1>自动播放 + x5-playsinline 测试</h1>
+    <p>属性: <code>autoplay</code>, <code>muted</code>, <code>x5-playsinline</code>, <code>playsinline</code></p>
+    <video height="300" width="300" autoplay muted x5-playsinline playsinline>
         <source src="movie/movie.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
+        您的浏览器不支持 video 标签。
     </video>
 </body>
-
 </html>

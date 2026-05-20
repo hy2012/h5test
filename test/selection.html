@@ -1,31 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Section </title>
+    <title>文本选择测试 - H5 测试工具</title>
+    <link rel="stylesheet" href="../common/style.css">
+    <script src="../common/utils.js"></script>
+    <script src="../common/nav.js"></script>
 </head>
 
 <body>
-    <p>test Section haha </p>
-    <button onclick="getSelectionText()">getSelectionText</button>
-</body>
+    <h1>文本选择测试</h1>
+    <p>测试 <code>window.getSelection()</code> API 在不同环境下的表现。</p>
 
-<script type="text/javascript">
-    console.log('init.....')
-    function getSelectionText() {
-        console.log('selection.....')
-        var text = "";
-        if (window.getSelection) {
-            text = window.getSelection().toString();
-        } else if (document.selection && document.selection.type != "Control") {
-            text = document.selection.createRange().text;
-        }
-        console.log("getSelectionText:" + text)
-        alert(text)
-        return text;
-    }
-</script>
+    <div style="margin: 20px 0; padding: 15px; border: 1px dashed #ccc;">
+        <p><strong>测试文本：</strong></p>
+        <p>这是一段用于测试选择功能的文本。请尝试在移动端长按选择这段话中的一部分，然后点击下方的按钮。</p>
+        <p>The quick brown fox jumps over the lazy dog.</p>
+    </div>
+
+    <div class="test-buttons">
+        <button onclick="getSelectionText()">获取选中文本</button>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <p>也可以在下方的文本框中输入并选择：</p>
+        <textarea placeholder="在此输入文本进行测试..."></textarea>
+    </div>
+
+    <script type="text/javascript">
+        console.log('Selection test page initialized');
+    </script>
+</body>
 
 </html>

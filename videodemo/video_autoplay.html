@@ -1,15 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频自动播放测试 - H5 测试工具</title>
+    <link rel="stylesheet" href="../common/style.css">
+    <script src="../common/utils.js"></script>
+    <script src="../common/nav.js"></script>
+</head>
 
 <body>
+    <h1>视频自动播放测试</h1>
+    <p>测试不同属性组合下的视频自动播放行为。</p>
+    
     <ul>
-        <li> <a href="./video_p1.html" target="_self">autoplay</a></li>
-        <li><a href="./video_p2.html">no autoplay</a></li>
-        <li> <a href="./video_p3.html">autoplay h5-page</a></li>
-        <li> <a href="./video_p4.html">autoplay x5-playinline h5-page</a> </li>
-        <li> <a href="./video_p5.html">autoplay x5-playinline </a> </li>
+        <li><a href="./video_p1.html">1. 基础自动播放 (autoplay, muted, loop)</a></li>
+        <li><a href="./video_p2.html">2. 无自动播放 (无属性)</a></li>
+        <li><a href="./video_p3.html">3. 自动播放 (h5-page)</a></li>
+        <li><a href="./video_p4.html">4. 自动播放 + x5-playsinline (h5-page)</a></li>
+        <li><a href="./video_p5.html">5. 自动播放 + x5-playsinline</a></li>
     </ul>
 
+    <p style="margin-top: 20px; color: #666;">
+        注：现代浏览器通常要求视频必须 <code>muted</code> (静音) 才能自动播放。
+    </p>
 </body>
 
 </html>

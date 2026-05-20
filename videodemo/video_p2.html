@@ -1,21 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Test P2 - H5 测试工具</title>
+    <link rel="stylesheet" href="../common/style.css">
+    <script src="../common/nav.js"></script>
+</head>
 <body>
-    <p>不自动播放</p>
-    <video id="video" height="300" width="300" muted>
+    <h1>无自动播放测试</h1>
+    <p>属性: (无)</p>
+    <video height="300" width="300" controls>
         <source src="movie/movie.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
+        您的浏览器不支持 video 标签。
     </video>
-
-    <button onclick= "play()" >play</button>
 </body>
-<script>
-    function play(){
-        console.log('play video')
-        let v = document.getElementById("video")
-        v.play()
-    }
-</script>
-
 </html>

@@ -1,19 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地理位置测试 - H5 测试工具</title>
+    <link rel="stylesheet" href="../common/style.css">
+    <script src="../common/utils.js"></script>
+    <script src="../common/nav.js"></script>
+</head>
+
 <body>
-<p id="locationInfo">位置信息</p>
-<button onclick="getLocation()">获取位置</button>
-<script>
-var locationInfo=document.getElementById("locationInfo");
-function getLocation(){
-  if (navigator.geolocation) {
-    <!-- 前端页面访问设备地理位置 -->
-    navigator.geolocation.getCurrentPosition(showPosition);
-  }
-}
-function showPosition(position){
-  locationInfo.innerHTML="Latitude: " + position.coords.latitude + "<br />Longitude: " + position.coords.longitude;
-}
-</script>
+    <h1>地理位置测试 (Geolocation)</h1>
+    <p>该功能通常需要 HTTPS 环境或 localhost 才能正常工作。</p>
+    
+    <div class="test-buttons">
+        <button onclick="getLocation()">获取当前位置</button>
+    </div>
+
+    <div id="locationInfo" style="margin-top: 20px; padding: 15px; border: 1px solid #eee; background: #fafafa;">
+        等待获取位置信息...
+    </div>
+
+    <script>
+        var locationInfo = document.getElementById("locationInfo");
+
+        function getLocation() {
+            locationInfo.innerHTML = "正在请求位置权限...";
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                locationInfo.innerHTML = "您的浏览器不支持地理位置功能。";
+            }
+        }
+
+        function showPosition(position) {
+            locationInfo.innerHTML = "<strong>获取成功：</strong><br />" +
+                "纬度 (Latitude): " + position.coords.latitude + "<br />" +
+                "经度 (Longitude): " + position.coords.longitude;
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    locationInfo.innerHTML = "用户拒绝了地理位置请求。";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    locationInfo.innerHTML = "位置信息不可用。";
+                    break;
+                case error.TIMEOUT:
+                    locationInfo.innerHTML = "请求地理位置超时。";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    locationInfo.innerHTML = "发生未知错误。";
+                    break;
+            }
+        }
+    </script>
 </body>
+
 </html>

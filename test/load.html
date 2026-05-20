@@ -1,61 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>页面加载时间测试 - H5 测试工具</title>
+    <link rel="stylesheet" href="../common/style.css">
+    <script src="../common/utils.js"></script>
+    <script src="../common/nav.js"></script>
     <script>
+        window.startDate = Date.now();
+        console.log("Load script started at: " + window.startDate);
         
-        function sleep(d) {
-            for(var i= Date.now(); Date.now() - i <= d;);
-        }
-
-        window.startDate = Date.now()
-        console.log("load html startTime:" + startDate)
-        sleep(2000)
+        // 模拟阻塞 2 秒，用于测试加载时间
+        console.log("Simulating 2s block...");
+        sleep(2000);
     </script>
 
-    <!-- 引入样式 -->
+    <!-- 引入外部资源测试加载 -->
     <link async rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <!-- 引入组件库 -->
     <script async src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script async src="https://static.zhihu.com/heifetz/mobile.common.14514a86425aa98a5fa2.js"></script>
-    
 </head>
 
 <body>
-    页面 load 时间测试
-</body>
+    <h1>页面加载时间测试</h1>
+    <p>该页面通过脚本阻塞 2 秒来测试 <code>DOMContentLoaded</code> 和 <code>onload</code> 事件的触发时间。</p>
+    
+    <div id="log-container" style="margin-top: 20px; font-family: monospace; background: #222; color: #0f0; padding: 15px; border-radius: 4px; line-height: 1.4;">
+        <div>[System] 正在记录加载事件...</div>
+    </div>
 
-<script type="text/javascript">
-    function log(tag) {
-        var time = Date.now()
-        var dur = time - startDate
-        console.log("load" + tag + " time:" + time + " duration:" + dur)
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        log("DOMContentLoaded")
-    })
-
-    document.addEventListener("readystatechange", function () {
-        if (document.readyState == 'loading') {
-            log("readystatechange-loading")
-        } else if (document.readyState == 'interactive') {
-            log("readystatechange-interactive")
-        } else if (document.readyState == 'complete') {
-            log("readystatechange-complete")
+    <script type="text/javascript">
+        var logContainer = document.getElementById('log-container');
+        
+        function uiLog(tag) {
+            var time = Date.now();
+            var dur = time - window.startDate;
+            var msg = "Event: " + tag + " | Time: " + time + " | Duration: " + dur + "ms";
+            console.log(msg);
+            
+            var div = document.createElement('div');
+            div.textContent = "> " + msg;
+            logContainer.appendChild(div);
         }
-    })
-    window.onload = function () {
-        log("onload")
-    }
-    window.log = log
 
-    function sleep1(d) {
-        for(var i= Date.now(); Date.now() - i <= d;);
-    }
-</script>
+        document.addEventListener("DOMContentLoaded", function () {
+            uiLog("DOMContentLoaded");
+        });
+
+        document.addEventListener("readystatechange", function () {
+            uiLog("readystatechange-" + document.readyState);
+        });
+
+        window.onload = function () {
+            uiLog("onload");
+        };
+    </script>
+</body>
 
 </html>
